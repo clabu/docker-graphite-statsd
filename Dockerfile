@@ -4,27 +4,16 @@ LABEL maintainer="Denys Zhdanov <denis.zhdanov@gmail.com>"
 RUN true \
  && apk add --no-cache \
       cairo \
-      collectd \
-      collectd-disk \
-      collectd-nginx \
       findutils \
       librrd \
       logrotate \
-      memcached \
       nginx \
       nodejs \
       npm \
-      py3-pyldap \
-      redis \
       runit \
       sqlite \
       expect \
       dcron \
-      py-mysqldb \
-      mysql-dev \
-      mysql-client \
-      postgresql-dev \
-      postgresql-client \
  && rm -rf \
       /etc/nginx/conf.d/default.conf \
  && mkdir -p \
@@ -42,11 +31,8 @@ RUN true \
       pkgconfig \
       py3-cairo \
       py3-pip \
-      py3-pyldap \
       py3-virtualenv \
       py-rrd \
-      py-mysqldb \
-      openldap-dev \
       python3-dev \
       rrdtool-dev \
       wget \
@@ -58,11 +44,7 @@ RUN true \
       fadvise \
       gunicorn \
       msgpack-python \
-      redis \
-      rrdtool \
-      python-ldap \
-      mysqlclient \
-      psycopg2
+      rrdtool
 
 ARG version=1.1.6
 
