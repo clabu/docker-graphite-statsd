@@ -16,7 +16,7 @@ jobs:
       stage: build and deploy
       script:
         # set up the base image
-        - sed -i "s#^FROM .*#FROM ${DOCKER_FROM}#" Dockerfile
+        - sed -i "s#^FROM alpine.*#FROM ${DOCKER_FROM} as base#" Dockerfile
         # setup QEMU
         - docker run --rm --privileged multiarch/qemu-user-static:register --reset
         # build
