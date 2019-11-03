@@ -14,6 +14,7 @@ RUN true \
       sqlite \
       expect \
       dcron \
+      python3 \
  && rm -rf \
       /etc/nginx/conf.d/default.conf \
  && mkdir -p \
