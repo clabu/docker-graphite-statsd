@@ -31,7 +31,7 @@ jobs:
           docker push $DOCKER_USER/$DOCKER_IMAGE:$DOCKER_TAG
       env:
         - DOCKER_TAG=armhf
-        - DOCKER_FROM=rycus86/armhf-alpine-qemu
+        - DOCKER_FROM=clabu/armhf-alpine-qemu
 
 env:
   global:

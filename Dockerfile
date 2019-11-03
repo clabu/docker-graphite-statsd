@@ -1,5 +1,5 @@
 FROM alpine:3.10.3 as base
-LABEL maintainer="Denys Zhdanov <denis.zhdanov@gmail.com>"
+LABEL maintainer="clabu"
 
 RUN true \
  && apk add --no-cache \
@@ -21,7 +21,7 @@ RUN true \
       /var/log/graphite
 
 FROM base as build
-LABEL maintainer="Denys Zhdanov <denis.zhdanov@gmail.com>"
+LABEL maintainer="clabu"
 
 RUN true \
  && apk add --update \
@@ -75,13 +75,13 @@ RUN . /opt/graphite/bin/activate \
  && python3 ./setup.py install
 
 # install statsd (as we have to use this ugly way)
-#ARG statsd_version=0.8.5
-#ARG statsd_repo=https://github.com/statsd/statsd.git
-#WORKDIR /opt
-#RUN git clone "${statsd_repo}" \
-# && cd /opt/statsd \
-# && git checkout tags/v"${statsd_version}" \
-# && npm install
+ARG statsd_version=0.8.5
+ARG statsd_repo=https://github.com/statsd/statsd.git
+WORKDIR /opt
+RUN git clone "${statsd_repo}" \
+ && cd /opt/statsd \
+ && git checkout tags/v"${statsd_version}" \
+ && npm install
 
 COPY conf/opt/graphite/conf/                             /opt/defaultconf/graphite/
 COPY conf/opt/graphite/webapp/graphite/local_settings.py /opt/defaultconf/graphite/local_settings.py
@@ -97,7 +97,7 @@ RUN mkdir -p /var/log/graphite/ \
 COPY conf/opt/statsd/config/ /opt/defaultconf/statsd/config/
 
 FROM base as production
-LABEL maintainer="Denys Zhdanov <denis.zhdanov@gmail.com>"
+LABEL maintainer="clabu"
 
 ENV STATSD_INTERFACE udp
 
